@@ -70,7 +70,7 @@ function getCheckListOnCard(cardID: string) {
                         value.checkItems.map((item) => { return { id: item.id, name: item.name, state: item.state } })
                 };
             });
-            // console.log(checkList);
+            console.log(checkList);
             checkList.forEach((cl) => {
                 cl.list.forEach(item => {
                     console.log(item);
@@ -89,13 +89,12 @@ function unCheckItem(cardID: string, checkItemID: string) {
         `/1/cards/${cardID}/checkItem/${checkItemID}`,
         { state: 'incomplete' })
         .then((response) => {
-            console.log(`unchecked: ${response.id} : ${response.name}`);
+            // console.log(`unchecked: ${response.id} : ${response.name}`);
         });
 }
 
 function uncheckAllItemOnCard(cardID: string) {
     readConfig();
-    console.log(key, token);
     const trello = new Trello(key, token);
     trello.getChecklistsOnCard(cardID, (error, result) => {
         if (result instanceof Array) {
